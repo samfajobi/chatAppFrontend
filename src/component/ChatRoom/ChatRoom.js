@@ -1,5 +1,5 @@
 import React from 'react'
-import {useState, useEffect} from 'react'
+//import {useState, useEffect} from 'react'
 import classes from './ChatRoom.module.css'
 import styled from 'styled-components';
 import ChatOutlinedIcon from '@material-ui/icons/ChatOutlined';
@@ -223,41 +223,41 @@ const SendMessage = styled.div`
 
  
 `
+//       {socket, username, roomId }
+const ChatRoom = () => {
 
-const ChatRoom = ({socket, username, roomId }) => {
+    // const [ chatMessage, setChatMessage] = useState('')
+    // const [ messageList, setMessageList] = useState([])
+    // const [ newUserMsg, setNewUserMsg]   = useState([])
 
-    const [ chatMessage, setChatMessage] = useState('')
-    const [ messageList, setMessageList] = useState([])
-    const [ newUserMsg, setNewUserMsg]   = useState([])
+    // const SendMessage = async () => {
+    //     if (chatMessage !== '' ) {
+    //     const MessageData = {
+    //         Message: chatMessage,
+    //         User: username,
+    //         ChatRoom: roomId,
+    //         Time: new Date(Date.now()).getHours() 
+    //         + ':' 
+    //         + new Date(Date.now()).getMinutes()
+    //     } 
 
-    const SendMessage = async () => {
-        if (chatMessage !== '' ) {
-        const MessageData = {
-            Message: chatMessage,
-            User: username,
-            ChatRoom: roomId,
-            Time: new Date(Date.now()).getHours() 
-            + ':' 
-            + new Date(Date.now()).getMinutes()
-        } 
-
-        await socket.emit('sendMessage', MessageData  )
-        setMessageList( (list) => [...list, MessageData] )
+    //     await socket.emit('sendMessage', MessageData  )
+    //     setMessageList( (list) => [...list, MessageData] )
       
 
-        setChatMessage("")
-    }
+    //     setChatMessage("")
+    // }
 }
 
-    useEffect( () => {
-        socket.on( 'sendToClient', (msgData) => {
-            setMessageList( (list) => [...list, msgData] )
-            console.log(msgData)
-        }) 
-        socket.on('newUserMsg', (newUser) => {
-            setNewUserMsg( (list) => [...list, newUser])
-        }) 
-    }, [socket])
+    // useEffect( () => {
+    //     socket.on( 'sendToClient', (msgData) => {
+    //         setMessageList( (list) => [...list, msgData] )
+    //         console.log(msgData)
+    //     }) 
+    //     socket.on('newUserMsg', (newUser) => {
+    //         setNewUserMsg( (list) => [...list, newUser])
+    //     }) 
+    // }, [socket])
 
   return (
        <Container>

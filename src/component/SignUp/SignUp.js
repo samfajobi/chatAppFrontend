@@ -88,8 +88,7 @@ const SignIn = () => {
       confirmPass: confirmPass  
     }
 
-    axiosInstance.post("/signin", userData).
-    then( (response) => {
+    axiosInstance.post("/signin", userData).then( (response) => {
       console.log(`Form has been Submitted Successfully ${response}`)
     }).catch( (err) => {
       console.log(`An Error has occured!!! ${err}`)

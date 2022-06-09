@@ -7,7 +7,7 @@ import ChatRoom from './component/ChatRoom/ChatRoom';
 import { io }  from 'socket.io-client'
 import PersonAddIcon from '@material-ui/icons/PersonAdd';
 import ChatOutlinedIcon from '@material-ui/icons/ChatOutlined';
-import Home from './component/Home/Home';
+//import Home from './component/Home/Home';
 
 
 const socket = io.connect('http://localhost:4000')

@@ -247,7 +247,7 @@ const ChatRoom = () => {
 
     //     setChatMessage("")
     // }
-}
+//}
 
     // useEffect( () => {
     //     socket.on( 'sendToClient', (msgData) => {

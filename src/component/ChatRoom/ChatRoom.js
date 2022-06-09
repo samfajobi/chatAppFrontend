@@ -226,28 +226,28 @@ const SendMessage = styled.div`
 
 const ChatRoom = ({socket, username, roomId }) => {
 
-//     const [ chatMessage, setChatMessage] = useState('')
-//     const [ messageList, setMessageList] = useState([])
-//     const [ newUserMsg, setNewUserMsg]   = useState([])
+    const [ chatMessage, setChatMessage] = useState('')
+    const [ messageList, setMessageList] = useState([])
+    const [ newUserMsg, setNewUserMsg]   = useState([])
 
-//     const SendMessage = async () => {
-//         if (chatMessage !== '' ) {
-//         const MessageData = {
-//             Message: chatMessage,
-//             User: username,
-//             ChatRoom: roomId,
-//             Time: new Date(Date.now()).getHours() 
-//             + ':' 
-//             + new Date(Date.now()).getMinutes()
-//         } 
+    const SendMessage = async () => {
+        if (chatMessage !== '' ) {
+        const MessageData = {
+            Message: chatMessage,
+            User: username,
+            ChatRoom: roomId,
+            Time: new Date(Date.now()).getHours() 
+            + ':' 
+            + new Date(Date.now()).getMinutes()
+        } 
 
-//         await socket.emit('sendMessage', MessageData  )
-//         setMessageList( (list) => [...list, MessageData] )
+        await socket.emit('sendMessage', MessageData  )
+        setMessageList( (list) => [...list, MessageData] )
       
 
-//         setChatMessage("")
-//     }
-// }
+        setChatMessage("")
+    }
+}
 
     useEffect( () => {
         socket.on( 'sendToClient', (msgData) => {

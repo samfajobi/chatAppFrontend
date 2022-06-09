@@ -1,6 +1,5 @@
 import React from 'react'
 //import {useState, useEffect} from 'react'
-import classes from './ChatRoom.module.css'
 import styled from 'styled-components';
 import ChatOutlinedIcon from '@material-ui/icons/ChatOutlined';
 import DehazeIcon from '@material-ui/icons/Dehaze';

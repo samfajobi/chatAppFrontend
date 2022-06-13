@@ -1,5 +1,5 @@
 import React from 'react'
-//import {useState, useEffect} from 'react'
+import {useState, useEffect} from 'react'
 import styled from 'styled-components';
 import ChatOutlinedIcon from '@material-ui/icons/ChatOutlined';
 import DehazeIcon from '@material-ui/icons/Dehaze';
@@ -113,6 +113,9 @@ const H3 = styled.h3`
 const MsgContent = styled.div`
  
 `
+const UserMsg = styled.div`
+ 
+`
 
 const MessageInfo = styled.div`
   
@@ -203,9 +206,9 @@ const Button = styled.button`
   
 `
 
-const SendMessage = styled.div`
+const SendMsg = styled.div`
   margin-left: 20px;
-  margin-top: 38%;
+  margin-top: 48%;
   display: flex;
 
   @media screen and (max-width: 1440px) and (min-width: 900px){
@@ -222,41 +225,41 @@ const SendMessage = styled.div`
 
  
 `
-//       {socket, username, roomId }
-const ChatRoom = () => {
 
-    // const [ chatMessage, setChatMessage] = useState('')
-    // const [ messageList, setMessageList] = useState([])
-    // const [ newUserMsg, setNewUserMsg]   = useState([])
+const ChatRoom = ({socket, username, roomId}) => {
 
-    // const SendMessage = async () => {
-    //     if (chatMessage !== '' ) {
-    //     const MessageData = {
-    //         Message: chatMessage,
-    //         User: username,
-    //         ChatRoom: roomId,
-    //         Time: new Date(Date.now()).getHours() 
-    //         + ':' 
-    //         + new Date(Date.now()).getMinutes()
-    //     } 
+    const [ chatMessage, setChatMessage] = useState('')
+    const [ messageList, setMessageList] = useState([])
+    const [ newUserMsg, setNewUserMsg]   = useState([])
 
-    //     await socket.emit('sendMessage', MessageData  )
-    //     setMessageList( (list) => [...list, MessageData] )
+    const SendMessage = async () => {
+        if (chatMessage !== '' ) {
+        const MessageData = {
+            Message: chatMessage,
+            User: username,
+            ChatRoom: roomId,
+            Time: new Date(Date.now()).getHours() 
+            + ':' 
+            + new Date(Date.now()).getMinutes()
+        } 
+
+        await socket.emit('sendMessage', MessageData  )
+        setMessageList( (list) => [...list, MessageData] )
       
 
-    //     setChatMessage("")
-    // }
-//}
+        setChatMessage("")
+    }
+}
 
-    // useEffect( () => {
-    //     socket.on( 'sendToClient', (msgData) => {
-    //         setMessageList( (list) => [...list, msgData] )
-    //         console.log(msgData)
-    //     }) 
-    //     socket.on('newUserMsg', (newUser) => {
-    //         setNewUserMsg( (list) => [...list, newUser])
-    //     }) 
-    // }, [socket])
+    useEffect( () => {
+        socket.on( 'sendToClient', (msgData) => {
+            setMessageList( (list) => [...list, msgData] )
+            console.log(msgData)
+        }) 
+        socket.on('newUserMsg', (newUser) => {
+            setNewUserMsg( (list) => [...list, newUser])
+        }) 
+    }, [socket])
 
   return (
        <Container>
@@ -267,9 +270,7 @@ const ChatRoom = () => {
                 <ToggleIcon><DehazeIcon /></ToggleIcon>
              </HeaderInfo>
             </Header>
-            {/* { messageList.map( (messageContent) => {
-                    return ( */}
-                   <Body>
+                   <Body>                  
                         <MsgContainer>
                             <UserContainer>
                                 <UserHeader>
@@ -283,46 +284,46 @@ const ChatRoom = () => {
                                 </Users>
                             </UserContainer>
                             <Messages>
-                                <MsgContent>
-                                    {/* <P>{messageContent.Message}</P> */}
-                                </MsgContent> 
-                                <MessageInfo>
-                                    <IncMessage>
-                                        {/* <P>{messageContent.User}</P> */}
-                                         <MP>Hello</MP> 
-                                        {/* <P>{messageContent.Time}</P> */}
-                                         <TP>10:45am</TP> 
-                                    </IncMessage>
-                                    <OutMessage>
-                                      <MP>Hello</MP>
-                                      <TP>10:45</TP>
-                                    </OutMessage>
-                                    <SendMessage>
-                                        <Input 
-                                        // value={chatMessage}
-                                        type='text' placeholder='Enter Message'
-                                        // onChange={(event) => setChatMessage(event.target.value)}
-                                        //  
-                                        >
-                                        </Input>
-                                        <Button  
-                                        // onClick={SendMessage}
-                                        >Send</Button>
-                                    </SendMessage>  
-                                </MessageInfo>  
+                             
+                              {messageList.map((messageContent) => {
+                                return (
+                                <UserMsg>
+                                  <MsgContent>
+                                    <P>{messageContent.Message}</P>
+                                  </MsgContent> 
+                                  <IncMessage>
+                                    <P>{messageContent.User}</P>
+                                    <MP>Hello</MP> 
+                                    <P>{messageContent.Time}</P>
+                                    <TP>10:45am</TP> 
+                                  </IncMessage>
+                                  <OutMessage>
+                                    <MP>Hello</MP>
+                                    <TP>10:45</TP>
+                                  </OutMessage>
+                                </UserMsg>
+                                )
+                              })}
+                              <SendMsg>
+                                <Input 
+                                  value={chatMessage}
+                                  type='text' placeholder='Enter Message'
+                                  onChange={(event) => setChatMessage(event.target.value)}>
+                                </Input>
+                                <Button  onClick={SendMessage}>Send</Button>
+                              </SendMsg>  
+                            
                                 <div >
-                                    {/* {newUserMsg.map( (newMsg) => {
+                                    {newUserMsg.map( (newMsg) => {
                                         return (
                                             <P>{newMsg}</P>
                                         )
-                                    })} */}
+                                    })}
                                 </div> 
                            </Messages>   
                         </MsgContainer>
-                       
-                    </Body>
-                {/* )
-                })}     */}  
+                 </Body>
+                     
        </Container>
     
   )

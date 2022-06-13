@@ -11,8 +11,6 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom"
 const App1 = () => {
   return (
     <div>
-     
-    
       <Router>
         <Routes>
           <Route exact path='/' element={<Home/>}/>  
@@ -22,7 +20,6 @@ const App1 = () => {
           <Route exact path='/chat' element={<App/>}/>
         </Routes>
       </Router>
-
     </div>
   )
 }

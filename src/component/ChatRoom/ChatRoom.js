@@ -71,6 +71,9 @@ const Messages = styled.div`
  
 `
 
+const ScrollToBottom = styled.scrollToBottom`
+`
+
 const UserContainer = styled.div`
    background-color: darkgray;
    width: 250px;
@@ -283,27 +286,28 @@ const ChatRoom = ({socket, username, roomId}) => {
                                     <P>Bolarin</P>
                                 </Users>
                             </UserContainer>
+                            
                             <Messages>
-                             
+                              <ScrollToBottom>
                               {messageList.map((messageContent) => {
                                 return (
                                 <UserMsg>
                                   <MsgContent>
-                                    <P>{messageContent.Message}</P>
+                                    <P>{messageContent.Message} key={messageContent.id}</P>
                                   </MsgContent> 
                                   <IncMessage>
-                                    <P>{messageContent.User}</P>
+                                    <P>{messageContent.User} key={messageContent.id}</P>
                                     <MP>Hello</MP> 
-                                    <P>{messageContent.Time}</P>
-                                    <TP>10:45am</TP> 
+                                    <TP>{messageContent.Time} key={messageContent.id}</TP> 
                                   </IncMessage>
                                   <OutMessage>
-                                    <MP>Hello</MP>
-                                    <TP>10:45</TP>
+                                    <MP>{messageContent.Message} key={messageContent.id}</MP>
+                                    <TP>{messageContent.Time} key={messageContent.id}</TP>
                                   </OutMessage>
                                 </UserMsg>
                                 )
                               })}
+                              </ScrollToBottom>
                               <SendMsg>
                                 <Input 
                                   value={chatMessage}
@@ -322,8 +326,7 @@ const ChatRoom = ({socket, username, roomId}) => {
                                 </div> 
                            </Messages>   
                         </MsgContainer>
-                 </Body>
-                     
+                 </Body>        
        </Container>
     
   )

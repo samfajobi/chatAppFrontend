@@ -71,8 +71,7 @@ const Messages = styled.div`
  
 `
 
-const ScrollToBottom = styled.scrollToBottom`
-`
+
 
 const UserContainer = styled.div`
    background-color: darkgray;
@@ -288,7 +287,7 @@ const ChatRoom = ({socket, username, roomId}) => {
                             </UserContainer>
                             
                             <Messages>
-                              <ScrollToBottom>
+                            
                               {messageList.map((messageContent) => {
                                 return (
                                 <UserMsg>
@@ -296,8 +295,7 @@ const ChatRoom = ({socket, username, roomId}) => {
                                     <P>{messageContent.Message} key={messageContent.id}</P>
                                   </MsgContent> 
                                   <IncMessage>
-                                    <P>{messageContent.User} key={messageContent.id}</P>
-                                    <MP>Hello</MP> 
+                                    <MP>{messageContent.User}</MP> 
                                     <TP>{messageContent.Time} key={messageContent.id}</TP> 
                                   </IncMessage>
                                   <OutMessage>
@@ -307,7 +305,6 @@ const ChatRoom = ({socket, username, roomId}) => {
                                 </UserMsg>
                                 )
                               })}
-                              </ScrollToBottom>
                               <SendMsg>
                                 <Input 
                                   value={chatMessage}

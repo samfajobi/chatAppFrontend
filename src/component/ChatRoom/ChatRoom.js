@@ -291,9 +291,9 @@ const ChatRoom = ({socket, username, roomId}) => {
                               {messageList.map((messageContent) => {
                                 return (
                                 <UserMsg>
-                                  <MsgContent>
+                                  {/* <MsgContent>
                                     <P>{messageContent.Message} key={messageContent.id}</P>
-                                  </MsgContent> 
+                                  </MsgContent>  */}
                                   <IncMessage>
                                     <MP>{messageContent.User}</MP> 
                                     <TP>{messageContent.Time} key={messageContent.id}</TP> 

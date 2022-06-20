@@ -112,17 +112,12 @@ const H3 = styled.h3`
 
 `
 
-const MsgContent = styled.div`
- 
-`
+
 const UserMsg = styled.div`
  
 `
 
-const MessageInfo = styled.div`
-  
 
-`
 
 const IncMessage = styled.div`
   background-color: white;
